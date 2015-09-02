@@ -13,7 +13,13 @@ class IndexController extends AbstractActionController {
 		$produtos[] = array('nome' => 'Chinelo Havaianas', 'preco' => 40.00, 'descricao' => 'chinelo da moda');
 		$produtos[] = array('nome' => 'iphone 6', 'preco' => 3500.00,'descricao' => 'celular moderno');
 
-		$view_params = array('produtos' => $produtos);
+		
+
+		$em = $this->getServiceLocator()->get("Doctrine\ORM\EntityManager");
+		$repositorio = $em->getRepository("Produto\Entity\Produto");
+		$lista = $repositorio->findAll();
+
+		$view_params = array('produtos' => $lista);
 
 		return new ViewModel($view_params);
 	}

@@ -9,11 +9,12 @@
 	<tbody>
 		<?php 
 			foreach($produtos as $prod) {
+				
 		 ?>
 		 	<tr>
-				<td><?= $prod['nome'];?></td>
-				<td><?= $prod['preco'];?></td>
-				<td><?= $prod['descricao'];?></td>
+				<td><?= $prod->getNome();?></td>
+				<td><?= $prod->getPreco();?></td>
+				<td><?= $prod->getDescricao();?></td>
 			</tr>
 		<?php 
 			}
