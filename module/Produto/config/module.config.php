@@ -20,4 +20,9 @@ return array(
             'Produto\Controller\Index' => 'Produto\Controller\IndexController'
         ),
     ),
+    'view_manager' => array (
+    	'template_path_stack' => array(
+            __DIR__ . '/../view',
+        )
+    ),
 );
