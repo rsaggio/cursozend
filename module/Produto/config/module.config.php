@@ -3,9 +3,14 @@ return array(
 	'router' => array (
 		'routes' => array (
 			'application' => array (
-				'type' => 'Literal',
+				'type' => 'Segment',
 				'options' => array (
-					'route' => '/app',
+					'route' => '/[:controller[/:action[/:id]]]',
+					'constraints' => array(
+                        'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]*'
+                    ),
 					'defaults' => array (
 						'__NAMESPACE__' => 'Produto\Controller',
 						'controller' => 'Index',
@@ -23,7 +28,10 @@ return array(
     'view_manager' => array (
     	'template_path_stack' => array(
             __DIR__ . '/../view',
-        )
+        ),
+	    'template_map' => array(
+	        'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+    	),
     ),
 
     'doctrine' => array(
@@ -41,4 +49,6 @@ return array(
 			),
 		),
 	),
+
+
 );

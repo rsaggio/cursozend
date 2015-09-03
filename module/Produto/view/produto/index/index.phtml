@@ -4,6 +4,7 @@
 			<th>Nome</th>
 			<th>Preço</th>
 			<th>Descrição</th>
+			<th>Ações</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -15,6 +16,7 @@
 				<td><?= $prod->getNome();?></td>
 				<td><?= $prod->getPreco();?></td>
 				<td><?= $prod->getDescricao();?></td>
+				<td><a href="<?= $this->url('application',array('action' => 'deletar','id'=> $prod->getId()));?>" class="btn btn-danger">Remover</a>
 			</tr>
 		<?php 
 			}

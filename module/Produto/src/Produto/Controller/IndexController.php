@@ -4,6 +4,7 @@ namespace Produto\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Produto\Entity\Produto;
 
 class IndexController extends AbstractActionController {
 
@@ -24,6 +25,53 @@ class IndexController extends AbstractActionController {
 		return new ViewModel($view_params);
 	}
 
- }
+	public function cadastrarAction() {
+		
+		if($this->request->isPost()) {
+
+			$user = new Produto();
+			$user->setNome($this->request->getPost('nome'));
+			$user->setPreco($this->request->getPost('preco'));
+			$user->setDescricao($this->request->getPost('descricao'));
+
+			$em = $this->getServiceLocator()->get("Doctrine\ORM\EntityManager");
+			$em->persist($user);
+			$em->flush();
+
+			return $this->redirect()->toUrl('/Index/Index');
+
+		}
+
+
+		return new ViewModel();
+
+	}
+
+	public function deletarAction() {
+
+		$id = $this->params()->fromRoute('id');
+		if(is_null($id)) {
+			$id = $this->params()->fromPost('id');
+		}
+
+		$em = $this->getServiceLocator()->get("Doctrine\ORM\EntityManager");
+		$repositorio = $em->getRepository("Produto\Entity\Produto");
+		$produto = $repositorio->find($id);
+
+		if($this->request->isPost()) {
+				
+			$em->remove($produto);
+			$em->flush();
+
+			return $this->redirect()->toUrl('/Index/Index');
+
+		}
+
+		$view_params = ['produto' => $produto];
+		return new ViewModel($view_params);
+	}
+
+
+}
 
 ?>

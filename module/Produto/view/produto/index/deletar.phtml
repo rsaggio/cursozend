@@ -1,0 +1,8 @@
+<h1>Deletar produto</h1>
+<form action="<?= $this->url('application',array('action' => 'deletar')); ?>" method="post">
+	<input type="hidden" name="id" value="<?= $produto->getId();?>">
+	<p class="alert alert-danger">
+		Você deseja realmente deletar o produto: <?= $produto->getNome(); ?>?
+	</p>
+	<input type="submit" value="Sim" class="btn btn-danger">
+</form>

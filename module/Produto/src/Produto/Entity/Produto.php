@@ -39,6 +39,18 @@ class Produto {
 	public function getDescricao() {
 		return $this->descricao;
 	}
+
+	public function setNome($nome) {
+		$this->nome = $nome;
+	}
+
+	public function setPreco($preco) {
+		$this->preco = $preco;
+	}
+
+	public function setDescricao($desc) {
+		$this->descricao = $desc;
+	}
 }
 
  ?>

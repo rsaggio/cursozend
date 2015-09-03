@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Nossa aplicação</title>
+	<!-- Le styles -->
+        <?php 
+        	echo $this->headLink()
+            ->prependStylesheet($this->basePath('css/style.css'))
+            ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
+            ->prependStylesheet($this->basePath('css/bootstrap.min.css'));
+        ?>
+
+        <!-- Scripts -->
+        <?php echo $this->headScript()
+            ->prependFile($this->basePath('js/bootstrap.min.js'))
+            ->prependFile($this->basePath('js/jquery.min.js'));
+        ?>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-default">
+
+			<div class="navbar-header">
+				<a href="/" class="navbar-brand">Kunstee</a>
+			</div>
+
+			<ul class="nav navbar-nav">
+				<li><a href="/Index/index">Listar produtos</a></li>
+				<li><a href="/Index/cadastrar">Cadastrar produtos</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<div class="conteudo">
+		<?= $this->content; ?>
+		</div>
+	</main>
+	<footer class="rodape">
+		Todos os direitos reservados.
+	</footer>
+</body>
+</html>
