@@ -17,6 +17,7 @@
 				<td><?= $prod->getPreco();?></td>
 				<td><?= $prod->getDescricao();?></td>
 				<td><a href="<?= $this->url('application',array('action' => 'deletar','id'=> $prod->getId()));?>" class="btn btn-danger">Remover</a>
+				<a href="<?= $this->url('application',array('action' => 'editar','id'=> $prod->getId()));?>" class="btn btn-info">Editar</a></td>
 			</tr>
 		<?php 
 			}

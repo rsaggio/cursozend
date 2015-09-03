@@ -28,10 +28,14 @@
 			<ul class="nav navbar-nav">
 				<li><a href="/Index/index">Listar produtos</a></li>
 				<li><a href="/Index/cadastrar">Cadastrar produtos</a></li>
+				<li><a href="/Index/contato">Contato</a></li>
 			</ul>
 		</nav>
 	</header>
 	<main>
+		<?php 
+			$this->flashHelper();
+		 ?>
 		<div class="conteudo">
 		<?= $this->content; ?>
 		</div>

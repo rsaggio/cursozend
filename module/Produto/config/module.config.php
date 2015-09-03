@@ -49,6 +49,11 @@ return array(
 			),
 		),
 	),
+	'view_helpers' => array(
+        'invokables'=> array(
+            'FlashHelper' => 'Produto\View\Helper\FlashHelper'
+        )
+    ),
 
 
 );
