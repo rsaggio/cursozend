@@ -23,7 +23,7 @@ class IndexController extends AbstractActionController {
 
 		$lista = $repositorio->getProdutosPaginados($offset,$limit);
 
-		$view_params = array('produtos' => $lista);
+		$view_params = array('produtos' => $lista,'page' => $page);
 
 		return new ViewModel($view_params);
 

@@ -66,7 +66,8 @@ return array(
 	),
 	'view_helpers' => array(
         'invokables'=> array(
-            'FlashHelper' => 'Produto\View\Helper\FlashHelper'
+            'FlashHelper' => 'Produto\View\Helper\FlashHelper',
+            'PaginationHelper' => 'Produto\View\Helper\PaginationHelper'
         )
     ),
 
