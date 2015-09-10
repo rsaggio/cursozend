@@ -3,8 +3,9 @@
 namespace Produto\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
-/** @ORM\Entity */
+/** @ORM\Entity(repositoryClass="Produto\Entity\Repository\ProdutoRepository")  */
 class Produto {
 
 	/**
@@ -51,6 +52,7 @@ class Produto {
 	public function setDescricao($desc) {
 		$this->descricao = $desc;
 	}
+
 }
 
  ?>

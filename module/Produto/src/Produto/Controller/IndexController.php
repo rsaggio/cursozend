@@ -14,20 +14,19 @@ use Zend\Mail\Transport\SmtpOptions;
 class IndexController extends AbstractActionController {
 
 	public function indexAction() {
-		$produtos = [];
-		$produtos[] = array('nome' => 'Playstation 4', 'preco' => 2900.00, 'descricao' => 'Video game legal');
-		$produtos[] = array('nome' => 'Chinelo Havaianas', 'preco' => 40.00, 'descricao' => 'chinelo da moda');
-		$produtos[] = array('nome' => 'iphone 6', 'preco' => 3500.00,'descricao' => 'celular moderno');
 
-		
-
+		$page = $this->params()->fromRoute('page',1);
+		$limit = 1;
+		$offset = ($page == 1) ? 0: ($page - 1) * $limit;
 		$em = $this->getServiceLocator()->get("Doctrine\ORM\EntityManager");
 		$repositorio = $em->getRepository("Produto\Entity\Produto");
-		$lista = $repositorio->findAll();
+
+		$lista = $repositorio->getProdutosPaginados($offset,$limit);
 
 		$view_params = array('produtos' => $lista);
 
 		return new ViewModel($view_params);
+
 	}
 
 	public function cadastrarAction() {

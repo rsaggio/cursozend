@@ -18,6 +18,21 @@ return array(
 					),
 				),
 			),
+			'produtos' => array (
+				'type' => 'Segment',
+				'options' => array (
+					'route' => '/Produtos[/:page]',
+					'constraints' => array(
+                        'page' => '[0-9]*'
+                    ),
+					'defaults' => array (
+						'__NAMESPACE__' => 'Produto\Controller',
+						'controller' => 'Index',
+						'action' => 'Index',
+						'page' => 1
+					),
+				),
+			),
 		),
 	),
 	'controllers' => array(
