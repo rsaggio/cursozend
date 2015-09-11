@@ -29,6 +29,13 @@
 				<li><a href="/Index/index">Listar produtos</a></li>
 				<li><a href="/Index/cadastrar">Cadastrar produtos</a></li>
 				<li><a href="/Index/contato">Contato</a></li>
+				<?php 
+					if($this->identity()) {
+				 ?>
+				 <li><a href="<?= $this->Url('application',['controller' => 'Usuario','action' => 'Logout']); ?>">Logout</a></li>
+				<?php 
+				}
+				 ?>
 			</ul>
 		</nav>
 	</header>

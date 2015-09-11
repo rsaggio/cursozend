@@ -37,7 +37,8 @@ return array(
 	),
 	'controllers' => array(
         'invokables' => array(
-            'Produto\Controller\Index' => 'Produto\Controller\IndexController'
+            'Produto\Controller\Index' => 'Produto\Controller\IndexController',
+            'Produto\Controller\Usuario' => 'Produto\Controller\UsuarioController'
         ),
     ),
     'view_manager' => array (
@@ -61,6 +62,17 @@ return array(
 		    	'drivers' => array(
 		    	    'Produto\Entity' => 'application_entities'
 		    	),
+			),
+		),
+		'authentication' => array(
+			'orm_default' => array (
+				'object_manager' => 'Doctrine\ORM\EntityManager',
+				'identity_class' => 'Produto\Entity\Usuario',
+				'identity_property' => 'email',
+				'credential_property' => 'senha',
+				'credentialCallable' => function ($user, $senha) {
+        			return ($user->getSenha() === md5($senha));
+     			}
 			),
 		),
 	),

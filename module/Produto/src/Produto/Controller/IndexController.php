@@ -15,6 +15,11 @@ class IndexController extends AbstractActionController {
 
 	public function indexAction() {
 
+		if (!$user = $this->identity()) {
+			$this->flashMessenger()->addMessage("Você não tem acesso a essa parte do sistema");
+        	$this->redirect()->toUrl('/Usuario');
+    	}
+
 		$page = $this->params()->fromRoute('page',1);
 		$limit = 1;
 		$offset = ($page == 1) ? 0: ($page - 1) * $limit;
