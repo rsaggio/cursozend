@@ -4,9 +4,12 @@ namespace Produto\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Zend\InputFilter\InputFilterAwareInterface;
+use Zend\InputFilter\InputFilterInterface;
+use Zend\InputFilter\InputFilter;
 
 /** @ORM\Entity(repositoryClass="Produto\Entity\Repository\ProdutoRepository")  */
-class Produto {
+class Produto implements InputFilterAwareInterface {
 
 	/**
 	*@ORM\Id
@@ -23,6 +26,8 @@ class Produto {
 
 	/** @ORM\Column(type="string") */
 	private $descricao;
+
+	private $inputFilter;
 
 
 	public function getId() {
@@ -51,6 +56,38 @@ class Produto {
 
 	public function setDescricao($desc) {
 		$this->descricao = $desc;
+	}
+
+	public function setInputFilter(InputFilterInterface $InputFilter) {
+		throw new \Exception('não implementado');
+	}
+
+	public function getInputFilter() {
+		if(!$this->inputFilter) {
+
+			$inputFilter = new InputFilter();
+
+			$inputFilter->add([
+				'name' => 'nome',
+				'required' => true,
+				'filters' => [
+					['name' => 'StripTags']
+				],
+				'validators' => [
+					[
+						'name' => 'StringLength',
+						'options' => [
+							'min' => 3,
+							'max' => 100
+						]
+					]
+				]
+			]);
+
+			$this->inputFilter = $inputFilter;
+		}
+
+		return $this->inputFilter;
 	}
 
 }

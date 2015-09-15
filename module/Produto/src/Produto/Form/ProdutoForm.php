@@ -6,7 +6,7 @@ use Zend\Form\Element;
 
 class ProdutoForm extends Form {
 
-	public function __construct($name) {
+	public function __construct($name = "") {
 
 		parent::__construct($name);
 
