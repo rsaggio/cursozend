@@ -36,6 +36,9 @@ class ProdutoForm extends Form {
 		]);
 		$this->add($textarea);
 
+
+		$this->add(new Element\Csrf('security'));
+
 	}
 }
 
