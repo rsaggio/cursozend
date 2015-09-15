@@ -11,7 +11,13 @@
 		<label for="nome">Nome:</label>
 		<?php 
 			echo $this->formInput($form->get('nome'));
-		?>
+
+            echo $this->formElementErrors()
+            ->setMessageOpenFormat('<small class="text-danger">')
+            ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+            ->setMessageCloseString('</small>')
+        	->render($form->get('nome'));
+        ?>
 	</div>
 	<div class="form-group">
 		<label for="preco">Preço:</label>

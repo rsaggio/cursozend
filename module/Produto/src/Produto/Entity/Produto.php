@@ -7,6 +7,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 use Zend\InputFilter\InputFilter;
+use Zend\Validator\StringLength;
 
 /** @ORM\Entity(repositoryClass="Produto\Entity\Repository\ProdutoRepository")  */
 class Produto implements InputFilterAwareInterface {
@@ -78,7 +79,10 @@ class Produto implements InputFilterAwareInterface {
 						'name' => 'StringLength',
 						'options' => [
 							'min' => 3,
-							'max' => 100
+							'max' => 100,
+							'messages' => [
+								StringLength::TOO_SHORT => 'O nome deve conter pelo menos 3 letras'
+							]
 						]
 					]
 				]
