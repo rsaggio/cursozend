@@ -83,5 +83,21 @@ return array(
         )
     ),
 
+	'service_manager' => array(
+        'factories' => array(
+            'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
+        ),
+    ),
+    'translator' => array(
+        'locale' => 'en_US',
+        'translation_file_patterns' => array(
+            array(
+                'type'     => 'gettext',
+                'base_dir' => __DIR__ . '/../language',
+                'pattern'  => '%s.mo',
+            ),
+        ),
+    ),
+
 
 );

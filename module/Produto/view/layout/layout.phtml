@@ -26,13 +26,13 @@
 			</div>
 
 			<ul class="nav navbar-nav">
-				<li><a href="/Index/index">Listar produtos</a></li>
-				<li><a href="/Index/cadastrar">Cadastrar produtos</a></li>
-				<li><a href="/Index/contato">Contato</a></li>
+				<li><a href="/Index/index"><?= $this->translate('Listar produtos') ?></a></li>
+				<li><a href="/Index/cadastrar"><?= $this->translate('Cadastrar produtos') ?></a></li>
+				<li><a href="/Index/contato"><?= $this->translate('Contato') ?></a></li>
 				<?php 
 					if($this->identity()) {
 				 ?>
-				 <li><a href="<?= $this->Url('application',['controller' => 'Usuario','action' => 'Logout']); ?>">Logout</a></li>
+				 <li><a href="<?= $this->Url('application',['controller' => 'Usuario','action' => 'Logout']); ?>"><?= $this->translate('Logout') ?></a></li>
 				<?php 
 				}
 				 ?>
@@ -48,7 +48,7 @@
 		</div>
 	</main>
 	<footer class="rodape">
-		Todos os direitos reservados.
+		<?= $this->translate('Todos os direitos reservados.'); ?>
 	</footer>
 </body>
 </html>

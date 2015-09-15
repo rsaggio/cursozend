@@ -10,6 +10,7 @@ use Zend\Mail\Transport\Smtp as SmtpTransport;
 use Zend\Mime\Message as MimeMessage;
 use Zend\Mime\Part as MimePart;
 use Zend\Mail\Transport\SmtpOptions;
+use Produto\Form\ProdutoForm;
 
 class IndexController extends AbstractActionController {
 
@@ -51,8 +52,9 @@ class IndexController extends AbstractActionController {
 
 		}
 
+		$view_params = ['form' => new ProdutoForm()];
 
-		return new ViewModel();
+		return new ViewModel($view_params);
 
 	}
 
