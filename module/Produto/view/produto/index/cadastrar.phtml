@@ -23,12 +23,36 @@
 		<label for="preco">Preço:</label>
 		<?php 
 			echo $this->formInput($form->get('preco'));
+
+			 echo $this->formElementErrors()
+            ->setMessageOpenFormat('<small class="text-danger">')
+            ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+            ->setMessageCloseString('</small>')
+        	->render($form->get('preco'));
+		?>
+	</div>
+	<div class="form-group">
+		<label for="descricao">Categoria:</label>
+		<?php 
+			echo $this->formSelect($form->get('categoria'));
+
+			 echo $this->formElementErrors()
+            ->setMessageOpenFormat('<small class="text-danger">')
+            ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+            ->setMessageCloseString('</small>')
+        	->render($form->get('categoria'));
 		?>
 	</div>
 	<div class="form-group">
 		<label for="descricao">Descrição:</label>
 		<?php 
 			echo $this->formTextarea($form->get('descricao'));
+
+			 echo $this->formElementErrors()
+            ->setMessageOpenFormat('<small class="text-danger">')
+            ->setMessageSeparatorString('</small><br/><small class="text-danger">')
+            ->setMessageCloseString('</small>')
+        	->render($form->get('descricao'));
 		?>
 	</div>
 	<div class="form-group">

@@ -11,6 +11,7 @@ use Zend\Mime\Message as MimeMessage;
 use Zend\Mime\Part as MimePart;
 use Zend\Mail\Transport\SmtpOptions;
 use Produto\Form\ProdutoForm;
+use Produto\Entity\Categoria;
 
 class IndexController extends AbstractActionController {
 
@@ -36,8 +37,10 @@ class IndexController extends AbstractActionController {
 	}
 
 	public function cadastrarAction() {
-		
-		$form = new ProdutoForm();
+
+		$em = $this->getServiceLocator()->get("Doctrine\ORM\EntityManager");
+
+		$form = new ProdutoForm($em);
 
 		if($this->request->isPost()) {
 
@@ -49,11 +52,14 @@ class IndexController extends AbstractActionController {
 
 			if($form->isValid()) {
 
+				$catRepository = $em->getRepository('Produto\Entity\Categoria');
+				$categoria = $catRepository->find($this->request->getPost('categoria'));
 				$produto->setNome($this->request->getPost('nome'));
 				$produto->setPreco($this->request->getPost('preco'));
 				$produto->setDescricao($this->request->getPost('descricao'));
 
-				$em = $this->getServiceLocator()->get("Doctrine\ORM\EntityManager");
+				$produto->setCategoria($categoria);
+
 				$em->persist($produto);
 				$em->flush();
 				

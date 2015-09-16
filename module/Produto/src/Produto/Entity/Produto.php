@@ -8,6 +8,7 @@ use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 use Zend\InputFilter\InputFilter;
 use Zend\Validator\StringLength;
+use Produto\Entity\Categoria;
 
 /** @ORM\Entity(repositoryClass="Produto\Entity\Repository\ProdutoRepository")  */
 class Produto implements InputFilterAwareInterface {
@@ -27,6 +28,12 @@ class Produto implements InputFilterAwareInterface {
 
 	/** @ORM\Column(type="string") */
 	private $descricao;
+
+	/**
+    * @ORM\ManyToOne(targetEntity="Produto\Entity\Categoria")
+    * @ORM\JoinColumn(name="categoria_id", referencedColumnName="id")
+    **/
+	private $categoria;
 
 	private $inputFilter;
 
@@ -57,6 +64,10 @@ class Produto implements InputFilterAwareInterface {
 
 	public function setDescricao($desc) {
 		$this->descricao = $desc;
+	}
+
+	public function setCategoria(Categoria $categoria) {
+		$this->categoria = $categoria;
 	}
 
 	public function setInputFilter(InputFilterInterface $InputFilter) {

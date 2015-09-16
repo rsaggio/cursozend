@@ -3,12 +3,18 @@ namespace Produto\Form;
 
 use Zend\Form\Form;
 use Zend\Form\Element;
+use DoctrineModule\Persistence\ObjectManagerAwareInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 
-class ProdutoForm extends Form {
+class ProdutoForm extends Form implements ObjectManagerAwareInterface{
 
-	public function __construct($name = "") {
+	protected $objectManager;
+
+	public function __construct(ObjectManager $om,$name = "") {
 
 		parent::__construct($name);
+
+		$this->setObjectManager($om);
 
 		$this->setAttribute(array(
 			'method' => 'POST',
@@ -36,9 +42,36 @@ class ProdutoForm extends Form {
 		]);
 		$this->add($textarea);
 
+		/*$this->add(array(
+	     'type' => 'Zend\Form\Element\Csrf',
+	     'name' => 'csrf',
+	     'options' => array(
+	             'csrf_options' => array(
+	                     'timeout' => 100
+	             )
+	    )
+ 		));*/
 
-		$this->add(new Element\Csrf('security'));
+		$this->add(array(
+	        'type'    => 'DoctrineModule\Form\Element\ObjectSelect',
+	        'name'    => 'categoria',
+	        'attributes' => ['class' => 'form-control'],
+	        'options' => array(
+	            'object_manager' => $this->getObjectManager(),
+	            'target_class'   => 'Produto\Entity\Categoria',
+	            'property'       => 'nome',
+	            'empty_option'   => '--- escolha ---'
+	        ),
+    	));
 
+	}
+
+	public function setObjectManager(ObjectManager $objectManager) {
+		$this->objectManager = $objectManager;
+	}
+
+	public function getObjectManager() {
+		return $this->objectManager;
 	}
 }
 
